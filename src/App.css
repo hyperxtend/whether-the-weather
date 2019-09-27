@@ -1,0 +1,79 @@
+/*Add background-color, animation & a different font to the body*/
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: "Exo", sans-serif;
+  color: #fff;
+  background: linear-gradient(-45deg, #1affff, #00cccc, #00bfff, #0086b3, #006080, #24478f,  #4775d1, #00001a);
+  background-size: 400% 400%;
+  animation: gradientBG 9s ease infinite;
+}
+/*Creates animation for the background-color*/
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/*Styles & positions main heading*/
+#mainHead{
+ text-shadow: 2px 2px 1px #5c5c8a, 5px 5px 1px rgba(0,0,0,0.15);
+ margin-left: 30%;
+ text-decoration: underline;
+}
+/*Styles & positions sub-heading*/
+#subHead{
+ margin-left: 34%;
+ text-shadow: 1px 1px 0px #5c5c8a, 4px 4px 0px rgba(0,0,0,0.15);
+ padding: 15px;
+
+}
+/*Styles & positions the div where my weather attributes are being written to*/
+#foreCast{
+  float: center;
+  margin-left: 30%;
+  text-align: center;
+  background: linear-gradient( #4d004d, #862d86 60%);
+  width: 30%;
+  border-radius: 12px;
+  box-shadow: 4px 4px 3px #000000, 8px 8px 4px rgba(20,15,10,5);
+
+}
+/*Styles each heading for the weather attributes*/
+.weatherAspects{
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px  #000000;
+  padding: 9px;
+}
+/*Styles & positions the input for the search bars heading*/
+#cityInp{
+  text-shadow: 1px 1px 3px #00264d;
+  margin-left: 13%;
+  text-decoration: underline;
+  padding: 3%;
+  font-family: "Arial Black", Gadget, sans-serif; 
+}
+/*Styles & positions the search bar */
+.searchBar{
+  margin-left: 22%;
+  width: 50%;
+  border-radius: 12px 
+}
+/*Styles the search button*/
+.searchBut{
+  background-color: #e0e0eb;
+  border-radius: 50%
+}
+#error{
+  text-align: center;
+  padding: 15px;
+  font-size: 65px;
+  text-shadow: 1px 1px 3px #00264d;
+  text-decoration: underline;
+}
