@@ -8,7 +8,7 @@ const SearchInput = ({ setWeatherAttributes, setIsLoading }) => {
   const getWeather = async () => {
     setIsLoading(true);
     const APIcall = await fetch(
-      'https://api.openweathermap.org/data/2.5/weather?q=' +
+      'http://api.openweathermap.org/data/2.5/weather?q=' +
         city +
         '&units=metric' +
         '&APPID=16a73ca4ce28ad2078b712e85c777b69'
@@ -44,22 +44,29 @@ const SearchInput = ({ setWeatherAttributes, setIsLoading }) => {
     setIsLoading(false);
   };
   return (
-    <InputGroup className="form-container">
-      {/* Sets the specified city as a value */}
-      <Form.Control
-        type="text"
-        name="city"
-        onChange={(e) => {
-          if (e.target.value.length > 0) {
-            setCity(e.target.value);
-          }
-        }}
-        placeholder="Enter your city..."
-      />
-      <Button onClick={() => getWeather(city)} variant="outline-secondary">
-        Search
-      </Button>
-    </InputGroup>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        getWeather(city);
+      }}
+    >
+      <InputGroup className="form-container">
+        {/* Sets the specified city as a value */}
+        <Form.Control
+          type="text"
+          name="city"
+          onChange={(e) => {
+            if (e.target.value.length > 0) {
+              setCity(e.target.value);
+            }
+          }}
+          placeholder="Enter your city..."
+        />
+        <Button type="submit" variant="outline-secondary">
+          Search
+        </Button>
+      </InputGroup>
+    </form>
   );
 };
 // Exports this file to be used in main App component
