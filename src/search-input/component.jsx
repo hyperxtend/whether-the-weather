@@ -8,7 +8,7 @@ const SearchInput = ({ setWeatherAttributes, setIsLoading }) => {
   const getWeather = async () => {
     setIsLoading(true);
     const APIcall = await fetch(
-      'http://api.openweathermap.org/data/2.5/weather?q=' +
+      'https://api.openweathermap.org/data/2.5/weather?q=' +
         city +
         '&units=metric' +
         '&APPID=16a73ca4ce28ad2078b712e85c777b69'
