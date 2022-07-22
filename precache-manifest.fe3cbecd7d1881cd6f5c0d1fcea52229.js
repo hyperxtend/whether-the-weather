@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3de920ee951bb8fdcd0f",
-    "url": "/wheather-app/static/css/main.dfd39139.chunk.css"
+    "revision": "315c687678b342e89f25",
+    "url": "/wheather-app/static/css/main.ed2ddb75.chunk.css"
   },
   {
-    "revision": "3de920ee951bb8fdcd0f",
-    "url": "/wheather-app/static/js/main.3de920ee.chunk.js"
+    "revision": "315c687678b342e89f25",
+    "url": "/wheather-app/static/js/main.315c6876.chunk.js"
   },
   {
     "revision": "f696c4db138f4966f215",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/wheather-app/static/js/runtime~main.93a3ef31.js"
   },
   {
-    "revision": "e4cc4726b4a07b0fac76ab0c910ddc82",
+    "revision": "cdcb94ee3870f011295cf635c3289f86",
     "url": "/wheather-app/index.html"
   }
 ];
