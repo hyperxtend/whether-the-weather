@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/wheather-app/static/js/runtime~main.93a3ef31.js"
   },
   {
-    "revision": "cdcb94ee3870f011295cf635c3289f86",
+    "revision": "2c24462e5f531a6de644057b3c3c0c5e",
     "url": "/wheather-app/index.html"
   }
 ];
