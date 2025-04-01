@@ -1,29 +1,108 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-// Import my different components from their files
-import Tiles from './header';
+// Import components
+import WeatherBackgroundApp from './background';
+import Header from './header';
 import InitialMessage from './initial-message';
 import SearchInput from './search-input';
 import Weather from './weather-result';
-// Exports & returns class component to be rendered with it functionality
+
 const App = () => {
-  const [weatherAttributes, setWeatherAttributes] = React.useState({});
-  const [isLoading, setIsLoading] = React.useState(false);
-  // Function that fetches API for weather as a JSON file, taking the city as an arguement
+  const [weatherAttributes, setWeatherAttributes] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [coordinates, setCoordinates] = useState(null);
+
+  // Check if weatherAttributes is empty
   const isEmpty = Object.keys(weatherAttributes).length === 0;
+
+  // Get user's location on component mount
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      setIsLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setCoordinates({ lat: latitude, lon: longitude });
+          fetchWeatherByCoords(latitude, longitude);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+          setIsLoading(false);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+  // Fetch weather data by coordinates
+  const fetchWeatherByCoords = async (lat, lon) => {
+    try {
+      const APIcall = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&APPID=16a73ca4ce28ad2078b712e85c777b69`
+      );
+      const response = await APIcall.json();
+
+      if (response.cod === '404') {
+        setWeatherAttributes({
+          error: "Couldn't find weather for this location!",
+          cod: '404',
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      // Parse the weather data
+      const weatherResponse = {
+        temp: response.main.temp,
+        max: response.main.temp_max,
+        min: response.main.temp_min,
+        city: response.name,
+        lat: response.coord.lat,
+        lon: response.coord.lon,
+        windSpeed: response.wind.speed,
+        windDir: response.wind.deg,
+        country: response.sys.country,
+        humidity: response.main.humidity,
+        weather: response.weather[0].main,
+        description: response.weather[0].description,
+        icon: response.weather[0].icon,
+        sunrise: response.sys.sunrise,
+        sunset: response.sys.sunset,
+      };
+
+      setWeatherAttributes(weatherResponse);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="site-container">
-      <Tiles />
-      <SearchInput
-        setIsLoading={setIsLoading}
-        setWeatherAttributes={setWeatherAttributes}
-      />
-      {!isEmpty ? (
-        <Weather weatherAttributes={weatherAttributes} isLoading={isLoading} />
-      ) : (
-        <InitialMessage />
-      )}
+      {/* Pass weather data to background component */}
+      <WeatherBackgroundApp weatherData={weatherAttributes} />
+
+      <div className="content-container">
+        <Header />
+
+        <SearchInput
+          setIsLoading={setIsLoading}
+          setWeatherAttributes={setWeatherAttributes}
+        />
+
+        {!isEmpty ? (
+          <Weather
+            weatherAttributes={weatherAttributes}
+            isLoading={isLoading}
+          />
+        ) : (
+          <InitialMessage />
+        )}
+      </div>
     </div>
   );
 };
+
 export default App;
