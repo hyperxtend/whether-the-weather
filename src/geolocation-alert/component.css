@@ -1,0 +1,107 @@
+.geolocation-alert-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  margin: 0 auto;
+  max-width: 460px;
+  padding: 0 16px;
+  z-index: 9999;
+}
+
+.geolocation-alert-card {
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.geolocation-alert-header {
+  background: linear-gradient(to right, #3b82f6, #60a5fa);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.geolocation-alert-icon-wrapper {
+  background-color: white;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.geolocation-alert-icon {
+  width: 24px;
+  height: 24px;
+  color: #3b82f6;
+}
+
+.geolocation-alert-title-wrapper {
+  margin-left: 12px;
+}
+
+.geolocation-alert-title {
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+}
+
+.geolocation-alert-content {
+  padding: 16px;
+}
+
+.geolocation-alert-message {
+  color: #4b5563;
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.geolocation-alert-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.geolocation-alert-button {
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.geolocation-alert-button-secondary {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.geolocation-alert-button-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.geolocation-alert-button-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.geolocation-alert-button-primary:hover {
+  background-color: #2563eb;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.geolocation-alert-container {
+  animation: slideUp 0.3s ease-out forwards;
+}

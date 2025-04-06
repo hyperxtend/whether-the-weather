@@ -1,29 +1,98 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-// Import my different components from their files
-import Tiles from './header';
-import InitialMessage from './initial-message';
+import WeatherBackgroundApp from './background';
+import GeolocationAlert from './geolocation-alert'; // Import the new component
 import SearchInput from './search-input';
 import Weather from './weather-result';
-// Exports & returns class component to be rendered with it functionality
+
 const App = () => {
-  const [weatherAttributes, setWeatherAttributes] = React.useState({});
-  const [isLoading, setIsLoading] = React.useState(false);
-  // Function that fetches API for weather as a JSON file, taking the city as an arguement
-  const isEmpty = Object.keys(weatherAttributes).length === 0;
+  const [weatherAttributes, setWeatherAttributes] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [showLocationAlert, setShowLocationAlert] = useState(false);
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      setIsLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeatherByCoords(latitude, longitude);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+          setIsLoading(false);
+
+          // Show the alert if permission was denied
+          if (error.code === error.PERMISSION_DENIED) {
+            setShowLocationAlert(true);
+          }
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+  const fetchWeatherByCoords = async (lat, lon) => {
+    try {
+      const APIcall = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&APPID=16a73ca4ce28ad2078b712e85c777b69`
+      );
+      const response = await APIcall.json();
+
+      if (response.cod === '404') {
+        setWeatherAttributes({
+          error: "Couldn't find weather for this location!",
+          cod: '404',
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      const weatherResponse = {
+        temp: response.main.temp,
+        max: response.main.temp_max,
+        min: response.main.temp_min,
+        city: response.name,
+        lat: response.coord.lat,
+        lon: response.coord.lon,
+        windSpeed: response.wind.speed,
+        windDir: response.wind.deg,
+        country: response.sys.country,
+        humidity: response.main.humidity,
+        weather: response.weather[0].main,
+        description: response.weather[0].description,
+        icon: response.weather[0].icon,
+        sunrise: response.sys.sunrise,
+        sunset: response.sys.sunset,
+      };
+
+      setWeatherAttributes(weatherResponse);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="site-container">
-      <Tiles />
-      <SearchInput
-        setIsLoading={setIsLoading}
-        setWeatherAttributes={setWeatherAttributes}
-      />
-      {!isEmpty ? (
+      <WeatherBackgroundApp weatherData={weatherAttributes} />
+
+      <div className="content-container">
+        <SearchInput
+          setIsLoading={setIsLoading}
+          setWeatherAttributes={setWeatherAttributes}
+        />
+
         <Weather weatherAttributes={weatherAttributes} isLoading={isLoading} />
-      ) : (
-        <InitialMessage />
-      )}
+
+        {showLocationAlert && (
+          <GeolocationAlert onClose={() => setShowLocationAlert(false)} />
+        )}
+      </div>
     </div>
   );
 };
+
 export default App;
