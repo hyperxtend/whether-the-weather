@@ -1,7 +1,8 @@
 .weather-card {
   border-radius: 18px;
   padding: 28px 24px;
-  width: 440px;
+  width: 100%;
+  max-width: 440px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
   margin: 0 auto;
   text-align: center;
@@ -128,15 +129,16 @@
 }
 
 .weather-location h1 {
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   font-weight: 500;
   margin-bottom: 4px;
   letter-spacing: -0.5px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  overflow-wrap: break-word;
 }
 
 .weather-location h2 {
-  font-size: 16px;
+  font-size: clamp(14px, 3vw, 16px);
   font-weight: 400;
   opacity: 0.9;
   margin: 0;
@@ -144,8 +146,8 @@
 }
 
 .weather-temperature {
-  margin: 32px 0;
-  font-size: 64px;
+  margin: clamp(16px, 5vh, 32px) 0;
+  font-size: clamp(48px, 10vw, 64px);
   font-weight: 200; 
   line-height: 1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
@@ -173,14 +175,14 @@
 }
 
 .weather-description h3 {
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   font-weight: 500;
   margin: 0 0 4px 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .weather-description p {
-  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px);
   opacity: 0.9;
   margin: 0;
   text-transform: capitalize;
@@ -213,7 +215,8 @@
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 18px;
   padding: 28px 24px;
-  width: 440px;
+  width: 100%;
+  max-width: 440px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   margin: 0 auto;
   text-align: center;
@@ -234,13 +237,13 @@
 
 .error-message p {
   margin: 8px 0;
-  font-size: 17px;
+  font-size: clamp(15px, 3vw, 17px);
   font-weight: 600;
 }
 
 .error-message .error-details {
   opacity: 0.7;
-  font-size: 14px;
+  font-size: clamp(12px, 2.5vw, 14px);
   font-weight: normal;
 }
 
@@ -259,4 +262,32 @@
 .weather-card, .error-message {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 480px) {
+  .weather-card, .error-message {
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+  
+  .weather-details {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .weather-icon {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .weather-card, .error-message {
+    padding: 16px 12px;
+  }
+  
+  .weather-temperature {
+    margin: 12px 0;
+  }
 }
