@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-// Import components
 import WeatherBackgroundApp from './background';
+import GeolocationAlert from './geolocation-alert'; // Import the new component
 import SearchInput from './search-input';
 import Weather from './weather-result';
 
 const App = () => {
   const [weatherAttributes, setWeatherAttributes] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showLocationAlert, setShowLocationAlert] = useState(false);
 
   useEffect(() => {
     if ('geolocation' in navigator) {
@@ -20,6 +21,11 @@ const App = () => {
         (error) => {
           console.error('Error getting location:', error);
           setIsLoading(false);
+
+          // Show the alert if permission was denied
+          if (error.code === error.PERMISSION_DENIED) {
+            setShowLocationAlert(true);
+          }
         }
       );
     } else {
@@ -80,6 +86,10 @@ const App = () => {
         />
 
         <Weather weatherAttributes={weatherAttributes} isLoading={isLoading} />
+
+        {showLocationAlert && (
+          <GeolocationAlert onClose={() => setShowLocationAlert(false)} />
+        )}
       </div>
     </div>
   );
