@@ -2,27 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 // Import components
 import WeatherBackgroundApp from './background';
-import Header from './header';
-import InitialMessage from './initial-message';
 import SearchInput from './search-input';
 import Weather from './weather-result';
 
 const App = () => {
   const [weatherAttributes, setWeatherAttributes] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [coordinates, setCoordinates] = useState(null);
 
-  // Check if weatherAttributes is empty
-  const isEmpty = Object.keys(weatherAttributes).length === 0;
-
-  // Get user's location on component mount
   useEffect(() => {
     if ('geolocation' in navigator) {
       setIsLoading(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setCoordinates({ lat: latitude, lon: longitude });
           fetchWeatherByCoords(latitude, longitude);
         },
         (error) => {
@@ -35,7 +27,6 @@ const App = () => {
     }
   }, []);
 
-  // Fetch weather data by coordinates
   const fetchWeatherByCoords = async (lat, lon) => {
     try {
       const APIcall = await fetch(
@@ -52,7 +43,6 @@ const App = () => {
         return;
       }
 
-      // Parse the weather data
       const weatherResponse = {
         temp: response.main.temp,
         max: response.main.temp_max,
@@ -81,25 +71,15 @@ const App = () => {
 
   return (
     <div className="site-container">
-      {/* Pass weather data to background component */}
       <WeatherBackgroundApp weatherData={weatherAttributes} />
 
       <div className="content-container">
-        <Header />
-
         <SearchInput
           setIsLoading={setIsLoading}
           setWeatherAttributes={setWeatherAttributes}
         />
 
-        {!isEmpty ? (
-          <Weather
-            weatherAttributes={weatherAttributes}
-            isLoading={isLoading}
-          />
-        ) : (
-          <InitialMessage />
-        )}
+        <Weather weatherAttributes={weatherAttributes} isLoading={isLoading} />
       </div>
     </div>
   );

@@ -1,0 +1,262 @@
+.weather-card {
+  border-radius: 18px;
+  padding: 28px 24px;
+  width: 440px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.weather-content {
+  position: relative;
+  z-index: 1;
+}
+
+.weather-card.clear-sky.day-time {
+  background: linear-gradient(145deg, #54b3ed, #3097d1);
+}
+
+.weather-card.clear-sky.night-time {
+  background: linear-gradient(145deg, #0c1445, #1c3160);
+}
+
+.weather-card.clear-sky.night-time .weather-overlay {
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+                    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+                    radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+                    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.weather-card.cloudy-sky.day-time {
+  background: linear-gradient(145deg, #93a5cf, #6d88c1);
+}
+
+.weather-card.cloudy-sky.night-time {
+  background: linear-gradient(145deg, #484f65, #2c3e50);
+}
+
+.weather-card.cloudy-sky .weather-overlay {
+  background-size: 100px 100px;
+}
+
+.weather-card.rainy-sky.day-time {
+  background: linear-gradient(145deg, #6e7686, #526280);
+}
+
+.weather-card.rainy-sky.night-time {
+  background: linear-gradient(145deg, #2a3442, #3a4654);
+}
+
+.weather-card.rainy-sky .weather-overlay {
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.weather-card.storm-sky.day-time {
+  background: linear-gradient(145deg, #343e58, #242d44);
+}
+
+.weather-card.storm-sky.night-time {
+  background: linear-gradient(145deg, #1a1f2c, #121624);
+}
+
+.weather-card.storm-sky .weather-overlay {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+}
+
+.weather-card.snowy-sky.day-time {
+  background: linear-gradient(145deg, #b8c6db, #a1b3cb);
+}
+
+.weather-card.snowy-sky.night-time {
+  background: linear-gradient(145deg, #6b7689, #4a5366);
+}
+
+.weather-card.snowy-sky .weather-overlay {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.weather-card.misty-sky.day-time {
+  background: linear-gradient(145deg, #9ca6b2, #7b8899);
+}
+
+.weather-card.misty-sky.night-time {
+  background: linear-gradient(145deg, #4d5766, #3a4351);
+}
+
+.weather-card.misty-sky .weather-overlay {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0) 100%);
+}
+
+.weather-card.hazy-sky.day-time {
+  background: linear-gradient(145deg, #c0ab8e, #a08e76);
+}
+
+.weather-card.hazy-sky.night-time {
+  background: linear-gradient(145deg, #5a4f41, #3d3528);
+}
+
+.weather-card.default-weather.day-time {
+  background: linear-gradient(145deg, #54b3ed, #3097d1);
+}
+
+.weather-card.default-weather.night-time {
+  background: linear-gradient(145deg, #2c3e50, #34495e); 
+}
+
+/* Location styling */
+.weather-location {
+  margin-bottom: 16px;
+}
+
+.weather-location h1 {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.weather-location h2 {
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.weather-temperature {
+  margin: 32px 0;
+  font-size: 64px;
+  font-weight: 200; 
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 8px;
+  text-align: center;
+}
+
+.weather-icon {
+  margin-right: 12px;
+}
+
+.weather-icon img {
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+}
+
+.weather-description h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.weather-description p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+  text-transform: capitalize;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #007aff; /* iOS blue */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 28px 24px;
+  width: 440px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+  text-align: center;
+  color: #333;
+}
+
+.error-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #ff3b30; 
+  color: white;
+  font-size: 32px;
+  line-height: 50px;
+  margin: 0 auto 16px;
+  font-weight: bold;
+}
+
+.error-message p {
+  margin: 8px 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.error-message .error-details {
+  opacity: 0.7;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.weather-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  border-radius: 18px 18px 0 0;
+  z-index: 1;
+}
+
+.weather-card, .error-message {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
