@@ -7,7 +7,7 @@
 
 ## ✨ What's This All About?
 
-[**Weather The Weathers**](https://hyperxtend.github.io/whether-the-whether/) is a sleek, modern browser weather application that puts the forecast right at your fingertips! Whether you're planning a weekend getaway or just deciding if you need an umbrella today, we've got you covered.
+[**Whether The Weather**](https://hyperxtend.github.io/whether-the-whether/) is a sleek, modern browser weather application that puts the forecast right at your fingertips! Whether you're planning a weekend getaway or just deciding if you need an umbrella today, we've got you covered.
 
 ---
 
