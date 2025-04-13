@@ -1,6 +1,6 @@
 {
-  "name": "whether",
-  "homepage": "https://hyperxtend.github.io/whether-the-weasther/",
+  "name": "whether-the-weather",
+  "homepage": "https://hyperxtend.github.io/whether-the-weather/",
   "version": "1.5.0",
   "private": true,
   "dependencies": {
