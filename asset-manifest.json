@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/wheather-app/static/css/main.214b4169.css",
-    "main.js": "/wheather-app/static/js/main.291dfbac.js",
-    "index.html": "/wheather-app/index.html",
-    "main.214b4169.css.map": "/wheather-app/static/css/main.214b4169.css.map",
-    "main.291dfbac.js.map": "/wheather-app/static/js/main.291dfbac.js.map"
+    "main.css": "/whether-the-weather/static/css/main.214b4169.css",
+    "main.js": "/whether-the-weather/static/js/main.291dfbac.js",
+    "index.html": "/whether-the-weather/index.html",
+    "main.214b4169.css.map": "/whether-the-weather/static/css/main.214b4169.css.map",
+    "main.291dfbac.js.map": "/whether-the-weather/static/js/main.291dfbac.js.map"
   },
   "entrypoints": [
     "static/css/main.214b4169.css",
