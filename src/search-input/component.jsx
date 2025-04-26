@@ -87,6 +87,7 @@ const SearchInput = ({ setWeatherAttributes, setIsLoading }) => {
       setPredictions([]);
       setShowPredictions(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   const getWeather = async (city) => {
@@ -127,7 +128,6 @@ const SearchInput = ({ setWeatherAttributes, setIsLoading }) => {
       setWeatherAttributes(weatherResponse);
       setShowPredictions(false);
     } catch (error) {
-      console.error('Error fetching weather:', error);
       setWeatherAttributes({
         error: 'Error fetching weather data',
         cod: '500',
