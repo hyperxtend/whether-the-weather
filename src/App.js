@@ -19,7 +19,6 @@ const App = () => {
           fetchWeatherByCoords(latitude, longitude);
         },
         (error) => {
-          console.error('Error getting location:', error);
           setIsLoading(false);
 
           // Show the alert if permission was denied
