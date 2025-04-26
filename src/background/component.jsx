@@ -186,10 +186,14 @@ const WeatherBackgroundApp = ({ weatherData }) => {
               className="cloud"
               style={{
                 top: `${10 + Math.random() * 60}%`,
-                left: `${Math.random() * 100}%`,
+                // Start clouds off-screen to the left
+                left: `-150px`,
                 opacity: 0.7 + Math.random() * 0.3,
                 transform: `scale(${0.5 + Math.random() * 1.5})`,
-                animationDuration: `${30 + Math.random() * 60}s`,
+                // Each cloud has a different animation speed
+                animationDuration: `${30 + Math.random() * 40}s`,
+                // Stagger the start of each cloud's animation
+                animationDelay: `${Math.random() * 30}s`,
               }}
             />
           ));
@@ -262,10 +266,9 @@ const WeatherBackgroundApp = ({ weatherData }) => {
             100% { opacity: 0.2; }
           }
           
-          @keyframes float {
+          @keyframes floatAcrossScreen {
             0% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-            100% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 150px)); }
           }
           
           @keyframes rain {
@@ -305,7 +308,7 @@ const WeatherBackgroundApp = ({ weatherData }) => {
             height: 40px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 20px;
-            animation: float 30s linear infinite;
+            animation: floatAcrossScreen linear infinite;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
           }
           
