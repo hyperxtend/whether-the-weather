@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/whether-the-weather/static/css/main.214b4169.css",
-    "main.js": "/whether-the-weather/static/js/main.291dfbac.js",
+    "main.js": "/whether-the-weather/static/js/main.b1ede568.js",
     "index.html": "/whether-the-weather/index.html",
     "main.214b4169.css.map": "/whether-the-weather/static/css/main.214b4169.css.map",
-    "main.291dfbac.js.map": "/whether-the-weather/static/js/main.291dfbac.js.map"
+    "main.b1ede568.js.map": "/whether-the-weather/static/js/main.b1ede568.js.map"
   },
   "entrypoints": [
     "static/css/main.214b4169.css",
-    "static/js/main.291dfbac.js"
+    "static/js/main.b1ede568.js"
   ]
 }
